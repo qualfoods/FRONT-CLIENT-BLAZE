@@ -1,0 +1,55 @@
+
+<div class="list row">
+    <!--<div class="col-md-8">
+        <div class="input-group mb-3">
+            <input
+            
+            />
+        </div>
+    </div>-->
+
+    <div class="col-md-12">
+        <pagination-controls
+            id="listing_pagination"
+            previousLabel = "Prev"
+            nextLabel="Next"
+            responsive="true"
+            directionLinks = "true"
+            (pageChange)="getPage($event)">
+        </pagination-controls>
+    </div>
+ 
+    <div class="col-md-6"> 
+        <h4>Customers</h4>
+        <table class="table">
+            <thead>
+                <tr>
+                   <th>Nro</th>     
+                    <th>Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Operations</th>   
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor=" let customer of customers | paginate:{ id: 'listing_pagination', 
+                    itemsPerPage: psize,
+                    currentPage: p,
+                    totalItems: totalRecords}; let i = index">
+                    <td>
+                        <a>{{i + 1}}</a>
+                    </td>
+                    <td>{{customer.firstName}}</td>
+                    <td>{{customer.lastName}}</td>
+                    <td>{{customer.email}}</td>
+                    <td>{{customer.phone}}</td>
+                    
+                </tr>
+            </tbody>
+   
+        </table>
+    </div>
+    
+
+</div>
